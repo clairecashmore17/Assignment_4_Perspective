@@ -43,7 +43,7 @@ var vertexColors = [
 
 
 var near = 100;
-var far = 300;
+var far = 1000;
 var radius = 500;
 var theta  = 0.5;
 var phi    = 0.0;
