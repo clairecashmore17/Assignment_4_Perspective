@@ -8,15 +8,26 @@ var NumVertices  = 36;
 var pointsArray = [];
 var colorsArray = [];
 
+// var vertices = [
+//     vec4(-0.5, -0.5,  1.5, 1.0),
+//     vec4(-0.5,  0.5,  1.5, 1.0),
+//     vec4(0.5,  0.5,  1.5, 1.0),
+//     vec4(0.5, -0.5,  1.5, 1.0),
+//     vec4(-0.5, -0.5, 0.5, 1.0),
+//     vec4(-0.5,  0.5, 0.5, 1.0),
+//     vec4(0.5,  0.5, 0.5, 1.0),
+//     vec4( 0.5, -0.5, 0.5, 1.0)
+// ];
+
 var vertices = [
-    vec4(-0.5, -0.5,  1.5, 1.0),
-    vec4(-0.5,  0.5,  1.5, 1.0),
-    vec4(0.5,  0.5,  1.5, 1.0),
-    vec4(0.5, -0.5,  1.5, 1.0),
-    vec4(-0.5, -0.5, 0.5, 1.0),
-    vec4(-0.5,  0.5, 0.5, 1.0),
-    vec4(0.5,  0.5, 0.5, 1.0),
-    vec4( 0.5, -0.5, 0.5, 1.0)
+    vec4(-100, -50,  250, 1.0),
+    vec4(-100,  50,  250, 1.0),
+    vec4(100,  50,  250, 1.0),
+    vec4(100, -50,  250, 1.0),
+    vec4(-50, 50, 50, 1.0),
+    vec4(-50,  50, 50, 1.0),
+    vec4(50,  50, 50, 1.0),
+    vec4( 50, -50, 50, 1.0)
 ];
 
 var vertexColors = [
@@ -31,10 +42,10 @@ var vertexColors = [
 ];
 
 
-var near = 0.3;
-var far = 3.0;
-var radius = 4.0;
-var theta  = 0.0;
+var near = 100;
+var far = 300;
+var radius = 500;
+var theta  = 0.5;
 var phi    = 0.0;
 var dr = 5.0 * Math.PI/180.0;
 
@@ -151,11 +162,15 @@ var render = function(){
     eye = vec3(radius*Math.sin(theta)*Math.cos(phi),
         radius*Math.sin(theta)*Math.sin(phi), radius*Math.cos(theta));
     modelViewMatrix = lookAt(eye, at , up);
+    console.log(`near: ${near} \n far: ${far}\n theta: ${theta} \n aspect: ${aspect}` )
     projectionMatrix = perspective(fovy, aspect, near, far);
 
     gl.uniformMatrix4fv( modelViewMatrixLoc, false, flatten(modelViewMatrix) );
     gl.uniformMatrix4fv( projectionMatrixLoc, false, flatten(projectionMatrix) );
-
+    // console.log(modelViewMatrix)
+    // console.log(projectionMatrix)
     gl.drawArrays( gl.TRIANGLES, 0, NumVertices );
+    //gl.drawArrays( gl.LINE_STRIP, 0, NumVertices );
+
     requestAnimFrame(render);
 }
