@@ -86,7 +86,7 @@ function colorCube() {
 
 // Initialize lighting standards
 var lightPosition = vec4(1.0, 1.0, 1.0, 0.0);
-var lightAmbient = vec4(0.1, 0.2, 0.2, 1.0);
+var lightAmbient = vec4(0.2, 0.2, 0.2, 1.0);
 var lightDiffuse = vec4(1.0, 1.0, 1.0, 1.0);
 var lightSpecular = vec4(1.0, 1.0, 1.0, 1.0);
 
@@ -175,7 +175,7 @@ var render = function () {
     modelViewMatrix = lookAt(eye, at, up);
     console.log(`near: ${near} \n far: ${far}\n theta: ${theta} \n aspect: ${aspect} \n phi: ${phi}\n fov: ${fovy}`)
     projectionMatrix = perspective(fovy, aspect, near, far);
-
+   
     gl.uniformMatrix4fv(modelViewMatrixLoc, false, flatten(modelViewMatrix));
     gl.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix));
     // console.log(modelViewMatrix)
